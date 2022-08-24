@@ -16,4 +16,10 @@ import json
 def apiV1(request):
     print(f'''{request.method}
       {request.headers}''')
-    return JsonResponse({"status": "ok"}, status=200,)
+    request_info = { 
+        'method': request.method, 
+        'header': request.header,
+        'body': request.body,
+        }
+    request_json = json.dumps(request_info)
+    return JsonResponse(request_json, status=200,)
